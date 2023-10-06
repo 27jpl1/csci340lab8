@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using csci340lab8.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<csci340lab8Context>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("csci340lab8Context") ?? throw new InvalidOperationException("Connection string 'csci340lab8Context' not found.")));
 
 var app = builder.Build();
 

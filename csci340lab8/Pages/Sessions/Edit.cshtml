@@ -1,0 +1,65 @@
+@page
+@model csci340lab8.Pages.Sessions.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Session</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Session.Id" />
+            <div class="form-group">
+                <label asp-for="Session.GameTitle" class="control-label"></label>
+                <input asp-for="Session.GameTitle" class="form-control" />
+                <span asp-validation-for="Session.GameTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Session.Date" class="control-label"></label>
+                <input asp-for="Session.Date" class="form-control" />
+                <span asp-validation-for="Session.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Session.StartTime" class="control-label"></label>
+                <input asp-for="Session.StartTime" class="form-control" />
+                <span asp-validation-for="Session.StartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Session.EndTime" class="control-label"></label>
+                <input asp-for="Session.EndTime" class="form-control" />
+                <span asp-validation-for="Session.EndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Session.Wins" class="control-label"></label>
+                <input asp-for="Session.Wins" class="form-control" />
+                <span asp-validation-for="Session.Wins" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Session.Losses" class="control-label"></label>
+                <input asp-for="Session.Losses" class="form-control" />
+                <span asp-validation-for="Session.Losses" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Session.RankChange" class="control-label"></label>
+                <input asp-for="Session.RankChange" class="form-control" />
+                <span asp-validation-for="Session.RankChange" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
