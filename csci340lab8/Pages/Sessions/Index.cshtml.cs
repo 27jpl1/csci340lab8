@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
@@ -21,12 +22,24 @@ namespace csci340lab8.Pages.Sessions
 
         public IList<Session> Session { get;set; } = default!;
 
+        [BindProperty(SupportsGet = true)]
+        public string? SearchString { get; set; }
+
+        public SelectList? Games { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? SessionGame { get; set; }
+
         public async Task OnGetAsync()
         {
-            if (_context.Session != null)
+            var movies = from m in _context.Session
+                        select m;
+            if (!string.IsNullOrEmpty(SearchString))
             {
-                Session = await _context.Session.ToListAsync();
+                movies = movies.Where(s => s.GameTitle.Contains(SearchString));
             }
+
+                Session = await movies.ToListAsync();
         }
     }
 }
